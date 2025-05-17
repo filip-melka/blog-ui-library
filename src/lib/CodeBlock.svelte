@@ -1,5 +1,12 @@
 <script lang="ts">
-	let { children } = $props();
+	import type { Snippet } from 'svelte';
+
+	interface Props {
+		children: Snippet;
+		language: string;
+	}
+
+	let { children, language }: Props = $props();
 	let code: HTMLElement;
 	let isCopied = $state(false);
 	let isHovering = $state(false);
@@ -74,7 +81,7 @@
 	</button>
 	<span
 		class={`${!showCopyBtn ? 'opacity-100' : 'opacity-0'} absolute top-4 right-4 z-0 text-white/50 transition-opacity duration-200`}
-		>ts</span
+		>{language}</span
 	>
 
 	<div bind:this={code}>
