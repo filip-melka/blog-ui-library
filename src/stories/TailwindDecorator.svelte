@@ -6,5 +6,7 @@
 </script>
 
 <div class="h-fit w-[90vw]">
-	{@render children()}
+	<div class="mx-auto max-w-2xl">
+		{@render children()}
+	</div>
 </div>

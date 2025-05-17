@@ -6,12 +6,23 @@
 
 	const { Story } = defineMeta({
 		component: CodeBlock,
+		title: 'Components/Code Block',
+		argTypes: {
+			language: {
+				control: 'text'
+			}
+		},
 		// @ts-ignore
 		decorators: [() => TailwindDecorator]
 	});
 </script>
 
-<Story name="Primary">
+<Story
+	name="Primary"
+	args={{
+		language: 'ts'
+	}}
+>
 	<!-- prettier-ignore -->
 	<pre><code><span class="line"
             ><span style="color:#FF79C6">const</span><span style="color:#F8F8F2"> myVar </span><span
