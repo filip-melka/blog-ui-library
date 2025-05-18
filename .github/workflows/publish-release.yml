@@ -1,0 +1,54 @@
+name: Build and Publish .tgz to GitHub Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Only runs on tags like v1.0.0, v2.3.4
+
+permissions:
+  contents: write # Required for creating a release
+
+jobs:
+  publish-tgz:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🧰 Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🛠️ Build library
+        run: npm run build
+
+      - name: 🏷️ Set version from tag
+        run: |
+          VERSION="${{ github.ref_name }}"
+          VERSION_NO_V="${VERSION#v}"
+          echo "Setting version to $VERSION_NO_V"
+          npm version "$VERSION_NO_V" --no-git-tag-version
+
+      - name: 📦 Pack library
+        run: npm pack
+
+      - name: 📄 Capture .tgz filename
+        id: vars
+        run: |
+          FILE=$(ls -t *.tgz | head -n 1)
+          echo "filename=$FILE" >> $GITHUB_OUTPUT
+
+      - name: 🚀 Create GitHub Release and upload .tgz
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          files: ${{ steps.vars.outputs.filename }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
