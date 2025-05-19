@@ -1,0 +1,55 @@
+import { Canvas, Meta, Story, Controls } from '@storybook/blocks';
+
+import * as CodeBlockStories from './CodeBlock.stories.svelte';
+import * as NoteStories from './Note.stories.svelte';
+import * as QuizStories from './Quiz.stories.svelte';
+
+<Meta title="Documentation" />
+
+# Blog UI Library
+
+## 🚀 Introduction
+
+Blog UI Library is a collection of reusable, customizable components designed specifically for [Svelte](https://svelte.dev/) projects using [Tailwind CSS](https://tailwindcss.com/).
+
+### 📦 Installation
+
+1. Install the library via npm:
+
+```sh
+npm install https://github.com/filip-melka/blog-ui-library/releases/download/v0.0.2/blog-ui-library-0.0.2.tgz
+```
+
+2. Register the source path for the library using `@source` in your CSS file:
+
+```css
+@source '../node_modules/blog-ui-library/*';
+```
+
+🔔 **Note:** Make sure the relative path correctly references the library inside node_modules.
+
+## Components
+
+### ✅ Code Block
+
+A code snippet wrapper component with a built-in copy button for quick code sharing.
+
+<Canvas of={CodeBlockStories.Primary} />
+
+<Controls of={CodeBlockStories.Primary} />
+
+### ✅ Note
+
+A callout block for highlighting important information.
+
+<Canvas of={NoteStories.Primary} />
+
+<Controls of={NoteStories.Primary} />
+
+### ✅ Quiz
+
+An interactive quiz component.
+
+<Canvas of={QuizStories.Primary} />
+
+<Controls of={QuizStories.Primary} />

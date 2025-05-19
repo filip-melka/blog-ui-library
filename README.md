@@ -1,58 +1,77 @@
-# Svelte library
+# Blog UI Library
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+> **Note:** This project is for personal use only and is not intended for production environments.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+## Introduction
 
-## Creating a project
+Blog UI Library is a collection of reusable, customizable components designed specifically for [Svelte](https://svelte.dev/) projects using [Tailwind CSS](https://tailwindcss.com/).
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Installation
 
-```bash
-# create a new project in the current directory
-npx sv create
+To install the library in your Svelte project, run the following command:
 
-# create a new project in my-app
-npx sv create my-app
+```sh
+npm install https://github.com/filip-melka/blog-ui-library/releases/download/v0.0.2/blog-ui-library-0.0.2.tgz
 ```
 
-## Developing
+## Releases
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+You can check current releases [here](https://github.com/filip-melka/blog-ui-library/releases).
 
-```bash
-npm run dev
+## 🚀 Local Development
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+### Prerequisites
+
+Ensure you have Node.js and npm installed on your system.
+
+### Installation
+
+Clone the repository and install dependencies:
+
+```sh
+git clone https://github.com/filip-melka/blog-ui-library.git
+cd blog-ui-library
+npm install
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+## 📖 Previewing Components
 
-## Building
+To explore and test the components using Storybook, run:
 
-To build your library:
-
-```bash
-npm run package
+```sh
+npm run storybook
 ```
 
-To create a production version of your showcase app:
+## 📦 Building and Packaging
 
-```bash
+To manually build and package the library, use the following commands:
+
+```sh
 npm run build
+npm pack
 ```
 
-You can preview the production build with `npm run preview`.
+This will generate a build of the library and create a tarball package for distribution.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## 🚀 Automated Publishing
 
-## Publishing
+The `publish-release.yml` GitHub Action handles automated building, packaging, and publishing of new releases.
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+### Releasing a New Version
 
-To publish your library to [npm](https://www.npmjs.com):
+To publish a new release, follow these steps:
 
-```bash
-npm publish
+1. Ensure your code is committed and pushed to the `master` branch:
+
+```sh
+git push origin master
 ```
+
+2. Create and push a version tag:
+
+```sh
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+This triggers the GitHub Action to automatically build, package, and publish the new release.
