@@ -1,5 +1,4 @@
 <script lang="ts">
-	import '../app.css';
 	interface Props {
 		correctAnswer: string;
 		otherOptions: string[];
